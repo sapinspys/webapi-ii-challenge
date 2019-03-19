@@ -1,10 +1,8 @@
-// Important imports
 const express = require("express");
 
 // Custom imports
 const db = require("../data/db.js");
 
-// etc.
 const router = express.Router();
 
 // Endpoints: Handle all URLs beginning with /api/posts
