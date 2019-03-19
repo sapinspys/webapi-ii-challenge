@@ -6,7 +6,6 @@ const db = require("../data/db.js");
 const router = express.Router();
 
 // Endpoints: Handle all URLs beginning with /api/posts
-
 // Creates a post using the information sent inside the `request body`.
 router.post("/", async (req, res) => {
   try {
