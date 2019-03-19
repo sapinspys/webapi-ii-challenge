@@ -9,10 +9,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            WEB API II Challenge - Blog with Node.js
-          </p>
+            <div className="title">
+              <img src={logo} className="App-logo" alt="logo" />
+              <p>
+                WEB API II Challenge - Blog with Node.js
+              </p>
+            </div>
           <Posts />
         </header>
       </div>

@@ -7,7 +7,7 @@
 
 .post {
   width: 40%;
-  border: 5px inset white;
+  border: 5px groove white;
   margin-bottom: 25px;
   padding: 0 20px;
 }

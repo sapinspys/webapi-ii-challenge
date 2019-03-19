@@ -15,7 +15,7 @@ class Posts extends Component {
         <div className="posts">
           {this.props.posts.map(post => {
             return (
-              <div className="post">
+              <div key={post.id}className="post">
               <p>{post.contents}</p>
               <p>{post.title}</p>
               <p>{post.created_at}</p>
