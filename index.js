@@ -1,9 +1,7 @@
-const db = require ('./data/db');
-const express = require('express');
+const server = require('./server.js');
 
-const server = express();
+const port = 5000;
 
-// Endpoints:
-
-module.exports = server;
-
+server.listen(port, () => {
+  console.log(`Server Running on http://localhost:${port}`)
+})
