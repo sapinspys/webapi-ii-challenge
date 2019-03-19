@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
     console.log(error);
     res
       .status(500)
-      .json({ error: "The posts information could not be retrieved." });
+      .json({ error: "The posts could not be retrieved." });
   }
 });
 
@@ -65,8 +65,32 @@ router.get("/:id", async (req, res) => {
 });
 
 // Removes the post with the specified id and returns the **deleted post object**. You may need to make additional calls to the database in order to satisfy this requirement.
-router.delete("/:id", (req, res) => {
-  res.send(req.params.id);
+router.delete("/:id", async (req, res) => {
+  try {
+    const postToBeDeleted = await db.findById(req.params.id);
+    if (!postToBeDeleted.length) {
+      res
+        .status(404)
+        .json({ message: "The post with the specified ID does not exist." });
+    } else {
+      numRecordsDeleted = await db.remove(req.params.id);
+      if (!numRecordsDeleted) {
+        console.log(error);
+        res
+          .status(500)
+          .json({ error: "No posts were deleted." });
+      } else {
+        res
+        .status(200)
+        .json(postToBeDeleted[0])
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ error: "The post could not be removed." });
+  }
 });
 
 // Updates the post with the specified `id` using data from the `request body`. Returns the modified document, **NOT the original**.
