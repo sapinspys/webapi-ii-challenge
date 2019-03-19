@@ -7,7 +7,7 @@ export const FAILURE = 'FAILURE';
 export const getAllPosts = () => dispatch => {
   dispatch ({ type: GET_POSTS });
   axios
-    .get('http://localhost:5000/api/users')
+    .get('http://localhost:5000/api/posts')
     .then(res => {
       dispatch({ 
         type: SUCCESS, 
