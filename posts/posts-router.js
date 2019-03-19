@@ -13,16 +13,22 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     if (!req.body.title || !req.body.contents) {
-      res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
+      res
+        .status(400)
+        .json({
+          errorMessage: "Please provide title and contents for the post."
+        });
     } else {
       const newUserId = await db.insert(req.body);
-      res.status(200).json({...newUserId, ...req.body})
+      res.status(200).json({ ...newUserId, ...req.body });
     }
   } catch (error) {
     console.log(error);
     res
       .status(500)
-      .json({ error: "There was an error while saving the post to the database" });
+      .json({
+        error: "There was an error while saving the post to the database"
+      });
   }
 });
 
@@ -43,10 +49,10 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const post = await db.findById(req.params.id); // returns post or empty array
-    if(!!post) {
+    if (!post.length) {
       res
         .status(404)
-        .json({ message: "The post with the specified ID does not exist." })
+        .json({ message: "The post with the specified ID does not exist." });
     } else {
       res.status(200).json(post);
     }
@@ -64,7 +70,7 @@ router.delete("/:id", (req, res) => {
 });
 
 // Updates the post with the specified `id` using data from the `request body`. Returns the modified document, **NOT the original**.
-router.delete("/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   res.send(req.params.id);
 });
 module.exports = router;
