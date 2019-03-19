@@ -16,9 +16,9 @@ class Posts extends Component {
           {this.props.posts.map(post => {
             return (
               <div className="post">
-              <p>Author: {post.contents}</p>
+              <p>{post.contents}</p>
               <p>{post.title}</p>
-              <p>Created: {post.created_at}</p>
+              <p>{post.created_at}</p>
             </div>
             )
           })}
