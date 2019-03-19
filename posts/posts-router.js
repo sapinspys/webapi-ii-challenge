@@ -40,8 +40,22 @@ router.get("/", async (req, res) => {
 });
 
 // Returns the post object with the specified id.
-router.get("/:id", (req, res) => {
-  res.send(req.params.id);
+router.get("/:id", async (req, res) => {
+  try {
+    const post = await db.findById(req.params.id); // returns post or empty array
+    if(!!post) {
+      res
+        .status(404)
+        .json({ message: "The post with the specified ID does not exist." })
+    } else {
+      res.status(200).json(post);
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ error: "The posts information could not be retrieved." });
+  }
 });
 
 // Removes the post with the specified id and returns the **deleted post object**. You may need to make additional calls to the database in order to satisfy this requirement.
