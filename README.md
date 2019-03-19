@@ -140,6 +140,8 @@ When the client makes a `PUT` request to `/api/posts/:id`:
   - return HTTP status code `200` (OK).
   - return the newly updated _post_.
 
+MVP COMPLETE!
+
 ## Stretch Problems
 
 To work on the stretch problems you'll need to enable the `cors` middleware. Follow these steps:
