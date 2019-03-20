@@ -22,6 +22,7 @@ function logger(req, res, next) {
 
 server.use(logger);
 
+// GLOBAL MIDDLEWARE
 function atGate(req, res, next) {
   console.log(`At the gate, about to be eaten`);
 
