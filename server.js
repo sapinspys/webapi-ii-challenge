@@ -31,12 +31,29 @@ function atGate(req, res, next) {
 
 server.use(atGate);
 
+// AUTHENTICATION MIDDLEWARE
+function auth(req, res, next) {
+  if (req.url === '/mellon') {
+    next();
+  } else {
+    res.send('You shall not pass!');
+  }
+}
+
+server.use(auth)
+
 // THIRD PARTY MIDDLEWARE
 server.use(cors());
 
 server.get('/', (req, res) => {
   res.send('Hello from the WEB API II Challenge server!')
 })
+
+server.get('/mellon', auth, (req, res) => {
+  console.log('Gate opening...');
+  console.log('Inside and safe');
+  res.send('Welcome Traveler!');
+});
 
 // ROUTE HANDLERS ARE ALSO MIDDLEWARE
 server.use('/api/posts', postsRouter)
