@@ -9,6 +9,27 @@ const server = express();
 // BUILT-IN MIDDLEWARE
 server.use(express.json());
 
+// CUSTOM MIDDLEWARE 
+function logger(req, res, next) {
+  console.log(
+    `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.get(
+      'Origin'
+    )}`
+  );
+
+  next();
+}
+
+server.use(logger);
+
+function atGate(req, res, next) {
+  console.log(`At the gate, about to be eaten`);
+
+  next();
+}
+
+server.use(atGate);
+
 // THIRD PARTY MIDDLEWARE
 server.use(cors());
 
