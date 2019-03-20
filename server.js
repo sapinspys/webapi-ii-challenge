@@ -49,6 +49,7 @@ server.get('/', (req, res) => {
   res.send('Hello from the WEB API II Challenge server!')
 })
 
+// LOCAL MIDDLEWARE
 server.get('/mellon', auth, (req, res) => {
   console.log('Gate opening...');
   console.log('Inside and safe');
